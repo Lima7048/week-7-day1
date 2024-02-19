@@ -18,7 +18,6 @@ function Greet() {
 
 function App() {
   const isLoggedIn = false;
-
   if (isLoggedIn) {
     return <h1>Welcome back</h1>;
   } else {
@@ -28,7 +27,6 @@ function App() {
 
 function App() {
   const [posts, setPosts] = useState([]);
-
   useEffect(() => {
     async function getPosts() {
       const response = await fetch(
@@ -50,3 +48,71 @@ function App() {
     </ul>
   );
 }
+
+function App() {
+  const [count, setCount] = React.useState(0);
+  return (
+    <div>
+      <p>You clicked {count} times</p>
+      <button onClick={() => setCount(count + 1)}>Click me</button>
+    </div>
+  );
+}
+
+function Button(props) {
+  return <button>{props.text}</button>;
+}
+function App() {
+  return <Button text="Click me" />;
+}
+function Button(props) {
+  return <button className="button">{props.text}</button>;
+}
+
+
+.button {
+  background-color: red;
+}
+
+
+function Form() {
+  function handleSubmit(event) {
+    event.preventDefault();
+
+    const formData = new FormData(event.target);
+
+    console.log(formData.get("name"));
+  }
+
+  return (
+    <form onSubmit={handleSubmit}>
+      <input type="text" name="name" />
+      <button>Submit</button>
+    </form>
+  );
+}
+
+function Home() {
+  return <h1>Home</h1>;
+}
+
+function About() {
+  return <h1>About</h1>;
+}
+
+function Contact() {
+  return <h1>Contact</h1>;
+}
+
+function App() {
+  const path = window.location.pathname;
+
+  if (path === "/") {
+    return <Home />;
+  } else if (path === "/about") {
+    return <About />;
+  } else if (path === "/contact") {
+    return <Contact />;
+  }
+}
+ 
